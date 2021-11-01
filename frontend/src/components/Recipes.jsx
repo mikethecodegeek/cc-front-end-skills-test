@@ -16,8 +16,6 @@ export default function Recipes() {
     }
 
     const showSelectedRecipe = (recipe) => {
-        console.log('anything')
-        console.log(recipe)
         setCurrentRecipe(recipe)
         setShowRecipe(true)
     }
@@ -39,7 +37,7 @@ export default function Recipes() {
           }
           { status === 'success' &&
             <div>
-              {data.map(recipe => (
+              {recipes.map(recipe => (
                 <RecipeListCard key={recipe.uuid}
                 recipe = {recipe} showSelectedRecipe={showSelectedRecipe} recipeName={recipe.title} listImage={recipe.images.small} />
                
