@@ -49,7 +49,7 @@ export default function Recipes() {
         </div>
         }
         {showRecipe && 
-            <RecipeCard recipe={currentRecipe} />
+            <RecipeCard recipe={currentRecipe} closeRecipe={setShowRecipe} />
         }
         </>
     )

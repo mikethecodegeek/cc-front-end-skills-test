@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function RecipeCard( {recipe} ) {
+export default function RecipeCard( {recipe, closeRecipe} ) {
     return (
         <div className='recipeCard'>
-            <h2>{recipe.name}</h2>
+            <h2>{recipe.title}</h2>
             <p>{recipe.description}</p>
             <p>Cook Time: {recipe.cookTime}</p>
             <p>Prep time: {recipe.prepTime}</p>
@@ -25,7 +25,8 @@ export default function RecipeCard( {recipe} ) {
             </ul>
             <h3>Post Date: {recipe.postDate}</h3>
             <h3>Edit Date: {recipe.editDate}</h3>
-            <image src={recipe.images.medium} alt={recipe.name}/>    
+            <image src={recipe.images.medium} alt={recipe.name}/>   
+            <button onClick={()=>closeRecipe(false)}>Back</button> 
         </div>
     )
 }
