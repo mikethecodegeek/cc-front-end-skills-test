@@ -1,23 +1,43 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-
+import EditRecipe from "./EditRecipe";
 
 export default function RecipeCard({ recipe, closeRecipe }) {
   const [specials, setSpecials] = useState([]);
-  const getRecipes = async () => {
+  const [editRecipe, setEditRecipe] = useState(false)
+
+  const specialColors = {
+    'local':'text-green-700',
+    'event':'text-red-700',
+    'promocode':'text-blue-700',
+    'sale':'text-purple-700',
+  }
+
+  const buildSpecialsObj = arr => {
+    let specialsObj = {}
+   arr.forEach(special => {
+    specialsObj[special.ingredientId]=special
+   })
+   return specialsObj;
+  }
+
+  const getSpecials = async () => {
     const response = await fetch("/specials");
     const data = await response.json();
-    setSpecials(data);
-    console.log(data);
-    return data;
+    let specialsObj = buildSpecialsObj(data)
+    console.log(specialsObj)
+    setSpecials(specialsObj);
+    return specialsObj;
   };
 
-  const { data, status } = useQuery("recipes", getRecipes);
+  const handleEdit = () => {
+    
+    setEditRecipe(true);
+    
+  };
 
-  // Bonus: Create a view to add and update recipes or specials.
-  // Image upload not required.
-  // Both endpoints support GET, POST and PATCH.
-  // Bonus: Create a view to add and update recipes or specials.
+  const { data, status } = useQuery("recipes", getSpecials);
+
   return (
     <div className="flex content-center items-center w-full">
       <div className="recipeCard flex flex-col justify-center p-10 shadow-md lg:w-4/5 xl:w-3/5 ">
@@ -57,34 +77,22 @@ export default function RecipeCard({ recipe, closeRecipe }) {
                       {ingredient.amount} {ingredient.measurement}{" "}
                       {ingredient.name}
                     </li>
-                    {specials.map((special) => {
-                      if (special.ingredientId === ingredient.uuid) {
-                        return (
-                           <div className="border-solid bg-red-200 text-center p-2 rounded mt-2 mb-2">
+                    {
+                      specials[ingredient.uuid] && 
+                       
+                           <div key={specials[ingredient.uuid].uuid} className="border-solid bg-red-200 text-center p-2 rounded mt-2 mb-2">
                     
-                            <h4 className="font-bold" key={special.uuid}>
-                                {special.title} 
+                            <h4 className="font-bold">
+                                {specials[ingredient.uuid].title} 
                             </h4>
-                            <p>{special.text}</p>
-                            <div className="">
-                        
-                                { special.type == 'local' &&
-                                    <p className="text-green-700">{special.type}! </p>
-                                }
-                                { special.type == 'event' &&
-                                    <p className="text-red-700">{special.type}! </p>
-                                }
-                                { special.type == 'promocode' &&
-                                    <p className="text-blue-700">{special.type}! </p>
-                                }
-                                { special.type == 'sale' &&
-                                    <p className="text-purple-700">{special.type}! </p>
-                                }
+                            <p>{specials[ingredient.uuid].text}</p>
+                            <div>
+                              <p className={specialColors[specials[ingredient.uuid].type]}>{specials[ingredient.uuid].type}! </p>
                             </div>
                           </div>
-                        );
+                        
                       }
-                    })}
+                    
                   </>
                 );
               })}
@@ -95,7 +103,7 @@ export default function RecipeCard({ recipe, closeRecipe }) {
             <ul>
               {recipe.directions.map((instruction, index) => {
                 return instruction.optional ? (
-                  <li key={index} className="my-2"><span className="mr-2">{index+1}.</span> {instruction.instructions} (optional)</li>
+                  <li key={index} className="my-2"><span className="mr-2">{index+1}.</span> {instruction.instructions} <span className="italic">(optional)</span></li>
                 ) : (
                   <li key={index} className="my-2"><span className="mr-2">{index+1}.</span> {instruction.instructions}</li>
                 );
@@ -106,7 +114,12 @@ export default function RecipeCard({ recipe, closeRecipe }) {
 
         
         
-        <button className="mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={() => closeRecipe(false)}>Back</button>
+        <button className="mt-5 mb-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={() => closeRecipe(false)}>Back</button>
+        <button className="mt-5 mb-20 bg-black hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={() => handleEdit()}>Edit</button>
+        
+        {editRecipe &&
+          <EditRecipe recipe={recipe} />
+        }
       </div>
     </div>
   );

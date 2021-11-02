@@ -8,10 +8,9 @@ export default function Searchbar( {recipes, setRecipes}) {
             let filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(search.toLowerCase()))
             setRecipes(filteredRecipes || [{title: 'No recipes found'}])
         } else {
-            console.log(recipes)
             setRecipes(recipes)
         }
-    },[search])
+    },[search, recipes, setRecipes])
 
     const handleChange = (e) => {
         setSearch(e.target.value)
