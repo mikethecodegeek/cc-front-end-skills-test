@@ -2,8 +2,10 @@ import React,{useState} from 'react'
 import {useQuery} from 'react-query'
 import RecipeListCard from './RecipeListCard'
 import RecipeCard from './RecipeCard'
+import Searchbar from './Searchbar'
 export default function Recipes() {
     const [recipes,setRecipes] = useState([])
+    const [allRecipes,setAllRecipes] = useState([])
     const [currentRecipe, setCurrentRecipe]=useState({})
     const [showRecipe, setShowRecipe] = useState(false)
     
@@ -11,7 +13,7 @@ export default function Recipes() {
         const response = await fetch('/recipes')
         const data = await response.json()
         setRecipes(data)
-        console.log(data)
+        setAllRecipes(data)
         return data
     }
 
@@ -39,6 +41,9 @@ export default function Recipes() {
             </div>
           }
           { status === 'success' &&
+          <>
+              <Searchbar recipes={allRecipes} setRecipes={setRecipes} />
+              {recipes.length > 0 &&
             <div className="md:grid lg:grid-cols-3 md:grid-cols-2">
               {recipes.map(recipe => (
                 <RecipeListCard key={recipe.uuid}
@@ -46,6 +51,13 @@ export default function Recipes() {
                
               ))}
             </div>
+          }
+          { recipes.length ==0 &&
+            <div>
+              <p className="text-center text-xl italic mb-20">No recipes found </p>
+            </div>
+          }
+            </>
           }
         </div>
         }
