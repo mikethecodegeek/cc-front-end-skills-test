@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 
+
 export default function RecipeCard({ recipe, closeRecipe }) {
   const [specials, setSpecials] = useState([]);
   const getRecipes = async () => {
@@ -35,6 +36,12 @@ export default function RecipeCard({ recipe, closeRecipe }) {
             <p>COOK TIME</p>
             <p className="font-bold">{recipe.cookTime} MINS</p>
           </div>
+        
+       
+        </div>
+        <div className="flex justify-between mt-3">
+            <p className="font-bold">Posted: <span className="text-sm"> {recipe.postDate} </span></p>
+            <p className="font-bold">Edited: <span className="text-sm">{recipe.editDate} </span></p>
         </div>
         <p className="text-center mt-10 mb-10">{recipe.description}</p>
         <div className="lg:flex">
@@ -53,9 +60,28 @@ export default function RecipeCard({ recipe, closeRecipe }) {
                     {specials.map((special) => {
                       if (special.ingredientId === ingredient.uuid) {
                         return (
-                          <h4 key={special.uuid}>
-                            {special.title} {special.type} {special.text}
-                          </h4>
+                           <div className="border-solid bg-red-200 text-center p-2 rounded">
+                    
+                            <h4 className="font-bold" key={special.uuid}>
+                                {special.title} 
+                            </h4>
+                            <p>{special.text}</p>
+                            <div className="">
+                        
+                                { special.type == 'local' &&
+                                    <p className="text-green-700">{special.type}! </p>
+                                }
+                                { special.type == 'event' &&
+                                    <p className="text-red-700">{special.type}! </p>
+                                }
+                                { special.type == 'promocode' &&
+                                    <p className="text-blue-700">{special.type}! </p>
+                                }
+                                { special.type == 'sale' &&
+                                    <p className="text-purple-700">{special.type}! </p>
+                                }
+                            </div>
+                          </div>
                         );
                       }
                     })}
@@ -78,10 +104,9 @@ export default function RecipeCard({ recipe, closeRecipe }) {
           </div>
         </div>
 
-        <h3>Post Date: {recipe.postDate}</h3>
-        <h3>Edit Date: {recipe.editDate}</h3>
         
-        <button onClick={() => closeRecipe(false)}>Back</button>
+        
+        <button className="mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={() => closeRecipe(false)}>Back</button>
       </div>
     </div>
   );

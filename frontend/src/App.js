@@ -1,11 +1,14 @@
 import './App.css';
+import Navbar from './components/Navbar';
 import Recipes from './components/Recipes';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <div>
-     <h1 className="text-center text-xl">Recipe App</h1>
+      <Navbar />
      <Recipes />
+     <Footer />
     </div>
   );
 }
