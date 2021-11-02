@@ -23,6 +23,9 @@ export default function Recipes() {
     
     return (
         <>
+         <div className="bg-black uppercase p-5 text-center">
+            <h2 className="text-white text-2xl bold">Recipes</h2>
+        </div>
         {!showRecipe &&
         <div>
           { status === 'error' &&

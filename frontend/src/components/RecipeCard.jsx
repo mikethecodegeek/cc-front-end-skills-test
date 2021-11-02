@@ -43,24 +43,24 @@ export default function RecipeCard({ recipe, closeRecipe }) {
             <p className="font-bold">Posted: <span className="text-sm"> {recipe.postDate} </span></p>
             <p className="font-bold">Edited: <span className="text-sm">{recipe.editDate} </span></p>
         </div>
-        <p className="text-center mt-10 mb-10">{recipe.description}</p>
+        <p className="text-center mt-10 mb-10 text-xl">{recipe.description}</p>
         <div className="lg:flex">
          
 
           <div className="bg-gray-200 p-10 mr-10 shadow-md">
-            <h3 className="text-lg mb-5 uppercase">Ingredients</h3>
+            <h3 className="text-lg mb-5 uppercase font-bold">Ingredients</h3>
             <ul>
               {recipe.ingredients.map((ingredient, index) => {
                 return (
                   <>
-                    <li key={ingredient.uuid}>
+                    <li key={ingredient.uuid} className="my-2">
                       {ingredient.amount} {ingredient.measurement}{" "}
                       {ingredient.name}
                     </li>
                     {specials.map((special) => {
                       if (special.ingredientId === ingredient.uuid) {
                         return (
-                           <div className="border-solid bg-red-200 text-center p-2 rounded">
+                           <div className="border-solid bg-red-200 text-center p-2 rounded mt-2 mb-2">
                     
                             <h4 className="font-bold" key={special.uuid}>
                                 {special.title} 
@@ -91,13 +91,13 @@ export default function RecipeCard({ recipe, closeRecipe }) {
             </ul>
           </div>
           <div>
-            <h3 className="text-lg mt-5 uppercase mb-5">Instructions</h3>
+            <h3 className="text-lg mt-5 uppercase mb-5 font-bold">Instructions</h3>
             <ul>
               {recipe.directions.map((instruction, index) => {
                 return instruction.optional ? (
-                  <li key={index}>{index+1}. {instruction.instructions} (optional)</li>
+                  <li key={index} className="my-2"><span className="mr-2">{index+1}.</span> {instruction.instructions} (optional)</li>
                 ) : (
-                  <li key={index}>{index+1}. {instruction.instructions}</li>
+                  <li key={index} className="my-2"><span className="mr-2">{index+1}.</span> {instruction.instructions}</li>
                 );
               })}
             </ul>
