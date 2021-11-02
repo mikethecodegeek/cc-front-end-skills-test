@@ -36,10 +36,10 @@ export default function Recipes() {
             </div>
           }
           { status === 'success' &&
-            <div>
+            <div className="md:grid lg:grid-cols-3 md:grid-cols-2">
               {recipes.map(recipe => (
                 <RecipeListCard key={recipe.uuid}
-                recipe = {recipe} showSelectedRecipe={showSelectedRecipe} recipeName={recipe.title} listImage={recipe.images.small} />
+                recipe = {recipe} showSelectedRecipe={showSelectedRecipe} recipeName={recipe.title} listImage={recipe.images.full} />
                
               ))}
             </div>
