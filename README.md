@@ -24,3 +24,4 @@ Features to add:
 - Implement drag and drop to re-order ingredients
 - Implement drag and drop to re-order instructions
 - Form validation - there is currently no validation on form submits
+- Deployment
