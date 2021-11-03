@@ -1,0 +1,22 @@
+{
+  "name": "crescendo",
+  "version": "1.0.0",
+  "description": "skills assessment",
+  "main": "index.js",
+  "scripts": {
+    "heroku-postbuild": "npm run build --prefix frontend",
+    "install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run start:api --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikethecodegeek/cc-front-end-skills-test.git"
+  },
+  "author": "Michael Sanford",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikethecodegeek/cc-front-end-skills-test/issues"
+  },
+  "homepage": "https://github.com/mikethecodegeek/cc-front-end-skills-test#readme"
+}

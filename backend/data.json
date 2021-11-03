@@ -162,7 +162,7 @@
       "prepTime": 25,
       "cookTime": 20,
       "postDate": "02/19/2018 12:47:42 AM",
-      "editDate": "11/3/2021, 3:09 pm",
+      "editDate": "02/19/2018 01:12:05 AM",
       "ingredients": [
         {
           "uuid": "3d810ba9-7e4e-48aa-b2e9-7918e38b358d",
@@ -203,6 +203,10 @@
       ],
       "directions": [
         {
+          "instructions": "Preheat oven to 350°F.",
+          "optional": false
+        },
+        {
           "instructions": "In a large bowl, combine the egg, bread crumbs, grated parmesan cheese, milk and onion.",
           "optional": false
         },
@@ -221,10 +225,6 @@
         {
           "instructions": "Serve with your favorite sauce and spaghetti.",
           "optional": true
-        },
-        {
-          "instructions": "Preheat oven to 350",
-          "optional": false
         }
       ]
     },
@@ -480,28 +480,6 @@
           "optional": false
         }
       ]
-    },
-    {
-      "cookTime": "5",
-      "prepTime": "5",
-      "servings": "1",
-      "title": "Cooper",
-      "ingredients": [],
-      "directions": [
-        {
-          "instructions": "erase",
-          "optional": false
-        }
-      ],
-      "description": "sucks",
-      "images": {
-        "full": "",
-        "medium": "",
-        "small": ""
-      },
-      "postDate": "11/3/2021, 2:55 pm",
-      "editDate": "11/3/2021, 2:57 pm",
-      "uuid": "6fe86b8-fee-ab60-77d1-b1de2c76a428"
     }
   ],
   "specials": [
