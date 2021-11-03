@@ -11,3 +11,9 @@ To run:
 5. cd into frontend
 6. npm install
 7. npm start
+
+Features to add:
+- Editing of individual ingredients in recipes
+- Editing of individual instructions in recipes
+- Implement drag and drop to re-order ingredients
+- Implement drag and drop to re-order instructions
