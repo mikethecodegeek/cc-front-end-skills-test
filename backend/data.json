@@ -162,7 +162,7 @@
       "prepTime": 25,
       "cookTime": 20,
       "postDate": "02/19/2018 12:47:42 AM",
-      "editDate": "11/2/2021, 11:06 am",
+      "editDate": "11/3/2021, 2:01 pm",
       "ingredients": [
         {
           "uuid": "3d810ba9-7e4e-48aa-b2e9-7918e38b358d",
@@ -203,10 +203,6 @@
       ],
       "directions": [
         {
-          "instructions": "Preheat oven to 350°F.",
-          "optional": false
-        },
-        {
           "instructions": "In a large bowl, combine the egg, bread crumbs, grated parmesan cheese, milk and onion.",
           "optional": false
         },
@@ -225,6 +221,10 @@
         {
           "instructions": "Serve with your favorite sauce and spaghetti.",
           "optional": true
+        },
+        {
+          "instructions": "Preheat oven to 350",
+          "optional": false
         }
       ]
     },
@@ -401,9 +401,9 @@
       },
       "servings": 8,
       "prepTime": 15,
-      "cookTime": "20",
+      "cookTime": 20,
       "postDate": "04/14/2018 07:28:54 PM",
-      "editDate": "11/2/2021, 10:56 am",
+      "editDate": "04/17/2018 03:20:16 PM",
       "ingredients": [
         {
           "uuid": "aa1ff525-4190-4a66-8d12-3f383a752b55",
@@ -480,142 +480,6 @@
           "optional": false
         }
       ]
-    },
-    {
-      "cookTime": "",
-      "prepTime": "",
-      "servings": "",
-      "title": "",
-      "ingredients": [],
-      "directions": [],
-      "description": "",
-      "images": {
-        "full": "",
-        "medium": "",
-        "small": ""
-      },
-      "postDate": "11/2/2021, 2:38 pm",
-      "editDate": "11/2/2021, 2:38 pm",
-      "uuid": "58a2deb-4383-fe8-cef6-3ad6c62ff5fe"
-    },
-    {
-      "cookTime": "10",
-      "prepTime": "20",
-      "servings": "4",
-      "title": "Test",
-      "ingredients": [
-        {
-          "id": "2324b48-5a3-b84c-583b-801eecd1206",
-          "name": "Num 1",
-          "amount": "2",
-          "measurement": "cups"
-        },
-        {
-          "id": "20a7c2e-e67-bffb-dbf0-13ac44f02c65",
-          "name": "Num2",
-          "amount": "2",
-          "measurement": "pieces"
-        }
-      ],
-      "directions": [],
-      "description": "Ingredients",
-      "images": {
-        "full": "",
-        "medium": "",
-        "small": ""
-      },
-      "postDate": "11/2/2021, 5:11 pm",
-      "editDate": "11/2/2021, 5:11 pm",
-      "uuid": "e5afb4e-cc30-565-87d-e7b5e3e771d8"
-    },
-    {
-      "cookTime": "",
-      "prepTime": "",
-      "servings": "",
-      "title": "",
-      "ingredients": [
-        {
-          "instructions": "Sweet",
-          "optional": "false"
-        }
-      ],
-      "directions": [],
-      "description": "",
-      "images": {
-        "full": "",
-        "medium": "",
-        "small": ""
-      },
-      "postDate": "11/2/2021, 5:20 pm",
-      "editDate": "11/2/2021, 5:20 pm",
-      "uuid": "e8f13b-154c-27-e5a4-1b8f5efa8ae"
-    },
-    {
-      "cookTime": "5",
-      "prepTime": "10",
-      "servings": "2",
-      "title": "Noodles",
-      "ingredients": [],
-      "directions": [
-        {
-          "instructions": "aCook it",
-          "optional": false
-        },
-        {
-          "instructions": "Eat it",
-          "optional": "false"
-        }
-      ],
-      "description": "yummy",
-      "images": {
-        "full": "",
-        "medium": "",
-        "small": ""
-      },
-      "postDate": "11/2/2021, 5:25 pm",
-      "editDate": "11/2/2021, 5:25 pm",
-      "uuid": "aa5a31-e58d-440b-5f5b-e5353e7808"
-    },
-    {
-      "cookTime": "10",
-      "prepTime": "20",
-      "servings": "4",
-      "title": "Pasta",
-      "ingredients": [
-        {
-          "id": "514f1-53cc-7d16-51d6-e3ae2c53cb62",
-          "name": "Noodles",
-          "amount": "1",
-          "measurement": "cups"
-        }
-      ],
-      "directions": [
-        {
-          "instructions": "Boil water",
-          "optional": false
-        },
-        {
-          "instructions": "Drain",
-          "optional": false
-        },
-        {
-          "instructions": "Add sauce",
-          "optional": "false"
-        },
-        {
-          "instructions": "Eat",
-          "optional": "false"
-        }
-      ],
-      "description": "Spagettios",
-      "images": {
-        "full": "",
-        "medium": "",
-        "small": ""
-      },
-      "postDate": "11/2/2021, 5:29 pm",
-      "editDate": "11/2/2021, 5:29 pm",
-      "uuid": "12da15-4df3-0c4c-8dfb-2d3b8efd65"
     }
   ],
   "specials": [

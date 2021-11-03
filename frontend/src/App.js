@@ -19,8 +19,8 @@ function App() {
           <Route path="/create" >
             <CreateRecipe />
           </Route>
-          <Route path="/edit" 
-            render={props => <EditRecipe recipe={"hi"} {...props} />}
+          <Route path="/edit/:uuid" 
+            render={props => <EditRecipe {...props} />}
           >
             
           </Route>

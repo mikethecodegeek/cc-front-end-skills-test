@@ -94,48 +94,50 @@ export default function CreateRecipe() {
         <h2 className="text-center text-2xl">Add a New Recipe</h2>
         <div className="flex justify-center">
             <form className="flex flex-col mb-20 ml-20 mt-5 w-2/3 shadow-xl p-10" onSubmit={(e)=>handleSubmit(e)}>
-                <div className="mb-2">
+                <div className="mb-2 flex flex-col">
                 <label>Title</label>
-                <input className="outline border-solid ml-5 p-1" type="text" value={title} onChange={(e) => setTitle(e.target.value)}/>
+                <input className="mt-2 outline border-solid p-2" type="text" value={title} onChange={(e) => setTitle(e.target.value)}/>
                 </div>
-                <div className="mb-2">
+                <div className="mb-2 flex flex-col">
                 <label>Description</label>
-                <input className="outline border-solid ml-5 p-1" type="text" value={description} onChange={(e) => setDescription(e.target.value)}/>
+                <input className="mt-2 outline border-solid p-2" type="text" value={description} onChange={(e) => setDescription(e.target.value)}/>
                 </div>
-                <div className="mb-2">
+                <div className="mb-2 flex flex-col">
                 <label>Prep Time</label>
-                <input className="outline border-solid ml-5 p-1" type="text" value={prepTime} onChange={(e) => setPrepTime(e.target.value)}/>
+                <input className="mt-2 outline border-solid p-2" type="text" value={prepTime} onChange={(e) => setPrepTime(e.target.value)}/>
                 </div>
-                <div className="mb-2">
+                <div className="mb-2 flex flex-col">
                 <label>Cook Time</label>
-                <input className="outline border-solid ml-5 p-1" type="text" value={cookTime} onChange={(e) => setCookTime(e.target.value)}/>
+                <input className="mt-2 outline border-solid p-2" type="text" value={cookTime} onChange={(e) => setCookTime(e.target.value)}/>
                 </div>
-                <div className="mb-2">
+                <div className="mb-2 flex flex-col">
                 <label>Servings</label>
-                <input className="outline border-solid ml-5 p-1" type="text" value={servings} onChange={(e) => setServings(e.target.value)}/>
+                <input className="mt-2 outline border-solid p-2" type="text" value={servings} onChange={(e) => setServings(e.target.value)}/>
                 </div>
-                <div className="mb-2">
-                <label>Ingredients</label>
+                <div className="mb-2 flex flex-col">
+                <label className="bold">Ingredients (add 1 at a time and press add ingredient)</label>
                 { ingredients.map(ingredient => <span>{ingredient.name}</span>)}
-                <div>
-              
+                <div className="flex flex-col">
+                
                 <label>Name</label>
-                <input className="outline border-solid ml-5 p-1" type="text" value={newIngredientName} onChange={(e) => setNewIngredientName(e.target.value)}/>
+                <input className="outline border-solid p-2" type="text" value={newIngredientName} onChange={(e) => setNewIngredientName(e.target.value)}/>
                 <label>Amount</label>
-                <input className="outline border-solid ml-5 p-1" type="text" value={newIngredientAmount} onChange={(e) => setNewIngredientAmount(e.target.value)}/>
+                <input className="outline border-solid p-2" type="text" value={newIngredientAmount} onChange={(e) => setNewIngredientAmount(e.target.value)}/>
                 <label>Measurement</label>
-                <input className="outline border-solid ml-5 p-1" type="text" value={newIngredientMeasurement} onChange={(e) => setNewIngredientMeasurement(e.target.value)}/>
+                <input className="outline border-solid p-2" type="text" value={newIngredientMeasurement} onChange={(e) => setNewIngredientMeasurement(e.target.value)}/>
                 </div>
-                <button onClick={e=>addIngredient(e)}>Add Ingredient</button>
+                <button className="bg-green-500 hover:bg-green-700 text-white text-lg mt-5 w-40 p-3" onClick={e=>addIngredient(e)}>Add Ingredient</button>
                 </div>
-                <div className="mb-2">
-                <label>Directions</label>
+                <div className="mb-2 flex flex-col">
+                <label className="font-bold">Directions</label>
                 { directions.map(direction => <span>{direction.instructions}</span>)}
+                {/* <div> */}
                 <label>Instruction</label>
-                <input className="outline border-solid ml-5 p-1" type="text" value={newDirectionInstruction} onChange={(e) => setNewInstruction(e.target.value)}/>
+                <textarea className="outline border-solid p-2" type="text" value={newDirectionInstruction} onChange={(e) => setNewInstruction(e.target.value)}/>
                 <label>Optional?</label>
-                <input className="outline border-solid ml-5 p-1" type="checkbox" value={newDirectionOptional} onChange={(e) => setOptional(e.target.value)}/>
-                <button onClick={e=>addInstruction(e)}>Add Instruction</button>
+                <input className="ml-5" type="checkbox" checked={newDirectionOptional} onChange={(e) => setOptional(e.target.checked)}/>
+                {/* </div> */}
+                <button className="bg-blue-500 hover:bg-blue-700 text-white text-lg mt-5 w-40 p-3" onClick={e=>addInstruction(e)}>Add Instruction</button>
                 </div>
                 <div>
                 <button className="bg-black text-white p-3 hover:bg-gray-700">Submit</button>

@@ -119,12 +119,10 @@ export default function RecipeCard({ recipe, closeRecipe }) {
         
         
         <button className="mt-5 mb-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={() => closeRecipe(false)}>Back</button>
-        <Link to='/edit' recipe={recipe}>Edit Recipe</Link>
+        <Link to={`/edit/${recipe.uuid}`}>Edit Recipe</Link>
         <button className="mt-5 mb-20 bg-black hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={() => handleEdit()}>Edit</button>
         
-        {editRecipe &&
-          <EditRecipe params={{recipe}} />
-        }
+      
       </div>
     </div>
   );
