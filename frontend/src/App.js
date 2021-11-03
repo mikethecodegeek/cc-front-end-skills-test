@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Recipes from './components/Recipes';
 import Footer from './components/Footer';
 import CreateRecipe from './components/CreateRecipe';
+import EditRecipe from './components/EditRecipe'
 
 import {
   Switch,
@@ -17,6 +18,11 @@ function App() {
      <Switch>
           <Route path="/create" >
             <CreateRecipe />
+          </Route>
+          <Route path="/edit" 
+            render={props => <EditRecipe recipe={"hi"} {...props} />}
+          >
+            
           </Route>
           <Route path="/">
             <Recipes />

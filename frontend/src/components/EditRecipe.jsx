@@ -1,7 +1,9 @@
 import React,{ useState } from 'react'
 import moment from 'moment'
 
-export default function EditRecipe( {recipe }) {
+export default function EditRecipe( { recipe, ...props }) {
+    console.log(recipe, props)
+    // let recipe = {}
     const [cookTime,setCookTime] = useState(recipe.cookTime)
     const [prepTime,setPrepTime] = useState(recipe.prepTime)
     const [servings,setServings] = useState(recipe.servings)
