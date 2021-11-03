@@ -17,7 +17,7 @@ export default function Searchbar( {recipes, setRecipes}) {
     }
 
     return (
-        <div className="my-5 flex justify-center text-xl">
+        <div className="mt flex justify-center text-xl">
             <input className="p-5" value={search} onChange={(e)=>handleChange(e)} placeholder="Search for a recipe.."></input>
         </div>
     )

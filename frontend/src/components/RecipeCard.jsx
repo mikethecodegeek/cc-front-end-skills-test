@@ -40,6 +40,8 @@ export default function RecipeCard({ recipe, closeRecipe }) {
     
   };
 
+
+
   const { data, status } = useQuery("recipes", getSpecials);
 
   return (
@@ -118,9 +120,10 @@ export default function RecipeCard({ recipe, closeRecipe }) {
 
         
         
-        <button className="mt-5 mb-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={() => closeRecipe(false)}>Back</button>
-        <Link to={`/edit/${recipe.uuid}`}>Edit Recipe</Link>
-        <button className="mt-5 mb-20 bg-black hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={() => handleEdit()}>Edit</button>
+        <button className="mt-5 mb-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={() => closeRecipe(false)}>Back</button>
+        
+        <Link className="bg-yellow-200 text-bg-yellow-700 p-2 text-center mb-20 hover:text-yellow-800 hover:bg-yellow-100" to={`/edit/${recipe.uuid}`}>Edit Recipe</Link>
+      
         
       
       </div>

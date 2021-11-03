@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from 'react'
 import moment from 'moment'
 import uuid from 'react-uuid'
 import {useQuery} from 'react-query'
-
+import { useHistory } from 'react-router'
 
 export default function EditRecipe( {  ...props }) {
     const [recipe,setRecipe] = useState('')
@@ -18,16 +18,15 @@ export default function EditRecipe( {  ...props }) {
     const [newIngredientMeasurement, setNewIngredientMeasurement] = useState('')
     const [newDirectionInstruction, setNewInstruction] = useState('')
     const [newDirectionOptional, setOptional] = useState(false)
+    const history = useHistory()
 
     const getRecipe = async () => {
         const response = await fetch(`/recipes/${props.match.params.uuid}`)
         const data = await response.json()
-        // console.log(data)
-        setRecipe(data)
         return data;
     }
 
-    const { data, status } = useQuery('recipe', getRecipe, {onSuccess:data=>console.log(data)}) 
+    const { data, status } = useQuery('recipe', getRecipe, {onSuccess:data=>setRecipe(data)}) 
      
     console.log(status)
     // console.log(data)
@@ -54,6 +53,7 @@ export default function EditRecipe( {  ...props }) {
             }
         })
         const data = await response.json()
+        history.push('/')
         return data
 
     }
@@ -119,12 +119,17 @@ export default function EditRecipe( {  ...props }) {
         setRecipe({...recipe,directions:newDirections})
     }
 
+    const handleBack = e => {
+        e.preventDefault()
+        history.push('/')
+    }
+
     return (
         <>
         {status === "loading" &&
             <p>Getting recipe </p>
         }
-            {status === 'success' &&
+            {recipe.title &&
             <>
             <h2 className="text-center text-2xl">Edit Recipe</h2>
             <div className="flex justify-center">
@@ -177,6 +182,7 @@ export default function EditRecipe( {  ...props }) {
                     </div>
                     <div>
                     <button className="bg-black text-white p-3 hover:bg-gray-700">Submit</button>
+                    <button onClick={e => handleBack(e)} className="ml-5 bg-yellow-300 text-yellow-700 p-3 hover:bg-gray-700">Back</button>
                     </div>
                 </form>
                 </div>

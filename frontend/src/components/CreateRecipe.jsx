@@ -1,6 +1,7 @@
 import React,{ useState, useEffect } from 'react'
 import uuid from 'react-uuid'
 import moment from 'moment'
+import { useHistory } from 'react-router'
 
 export default function CreateRecipe() {
     const [cookTime,setCookTime] = useState('')
@@ -15,6 +16,7 @@ export default function CreateRecipe() {
     const [newIngredientMeasurement, setNewIngredientMeasurement] = useState('')
     const [newDirectionInstruction, setNewInstruction] = useState('')
     const [newDirectionOptional, setOptional] = useState(false)
+    const history = useHistory()
 
     const handleSubmit  = async (e) => {
         e.preventDefault()
@@ -49,6 +51,7 @@ export default function CreateRecipe() {
             }
         })
         const data = await response.json()
+        history.push(`/`)
         return data
 
     }
