@@ -32,6 +32,7 @@ export default function RecipeForm({ handleSubmit, ...props }) {
         setIngredientError('Please add a valid ingredient measurement')
         return
     }
+    setIngredientError(false)
     const newIngredientObj = {
       id: uuid(),
       name: newIngredient.name,
@@ -50,6 +51,7 @@ export default function RecipeForm({ handleSubmit, ...props }) {
         setSubmitError('Please add a valid instruction')
         return
     }
+   setSubmitError(false)
     const newInstructionObj = {
       instructions: newDirection.instructions,
       optional: newDirection.optional,
