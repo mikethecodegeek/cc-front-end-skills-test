@@ -81,9 +81,9 @@ export default function EditRecipe( {  ...props }) {
             instructions: newDirectionInstruction,
             optional: newDirectionOptional,
         }
-        let newInstruction = {}
-        newInstruction.directions.push(newInstructionObj)
-        setRecipe({...recipe,directions:[...newInstruction.directions]})
+        let newInstruction = [...recipe.directions]
+        newInstruction.push(newInstructionObj)
+        setRecipe({...recipe,directions:[...newInstruction]})
     }
 
 
@@ -155,12 +155,21 @@ export default function EditRecipe( {  ...props }) {
                     <label className="font-bold">Directions</label>
                    
                     { recipe.directions.map( (direction,index) => <div key={index} className="bg-gray-200 mb-3 flex items-center justify-between w-full pl-2"><span>{direction.instructions}</span> <button className="p-2 bg-red-500 text-white hover:bg-red-700" onClick={(e)=>removeStep(e,index)}>Remove</button> </div>)}
-                    {/* <div> */}
+                    <div className="flex">
                     <label>Instruction</label>
+                    <div className="ml-10 mb-2">
+                        <label className="italic">Optional?</label>
+
+                        <input
+                        className="ml-5"
+                        type="checkbox"
+                        checked={newDirectionOptional}
+                        onChange={(e) => setOptional(e.target.checked)}
+                        />
+                    </div>
+            </div>
                     <textarea className="outline border-solid p-2" type="text" value={newDirectionInstruction} onChange={(e) => setNewInstruction(e.target.value)}/>
-                    <label>Optional?</label>
-                    <input className="ml-5" type="checkbox" checked={newDirectionOptional} onChange={(e) => setOptional(e.target.checked)}/>
-                    {/* </div> */}
+                    
                     <button className="bg-blue-500 hover:bg-blue-700 text-white text-lg mt-5 w-40 p-3" onClick={e=>addInstruction(e)}>Add Instruction</button>
                     </div>
                     <div>
