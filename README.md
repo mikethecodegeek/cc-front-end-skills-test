@@ -15,6 +15,7 @@ To run:
 Features:
 - Responsive (works for a variety of screen sizes)
 - Can view all recipes
+- Filter recipes in real time
 - Create new recipes
 - Edit current recipes
 
