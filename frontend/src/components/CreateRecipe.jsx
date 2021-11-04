@@ -11,10 +11,23 @@ export default function CreateRecipe() {
   const [newIngredientMeasurement, setNewIngredientMeasurement] = useState("");
   const [newDirectionInstruction, setNewInstruction] = useState("");
   const [newDirectionOptional, setOptional] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (recipe.ingredients.length === 0) {
+        setSubmitError('There are no ingredients. Please add at least one')
+        return
+    } 
+
+    if (recipe.directions.length === 0) {
+        setSubmitError('There are no instructions. Please add at least one')
+        return
+    } 
+    setSubmitError(false)
+
     const images = {
       full: "",
       medium: "",
@@ -115,6 +128,7 @@ export default function CreateRecipe() {
               type="text"
               value={recipe.title}
               onChange={(e) => setRecipe({ ...recipe, title: e.target.value })}
+              required
             />
           </div>
           <div className="mb-2 flex flex-col">
@@ -126,6 +140,7 @@ export default function CreateRecipe() {
               onChange={(e) =>
                 setRecipe({ ...recipe, description: e.target.value })
               }
+              required
             />
           </div>
           <div className="mb-2 flex flex-col">
@@ -137,6 +152,7 @@ export default function CreateRecipe() {
               onChange={(e) =>
                 setRecipe({ ...recipe, prepTime: e.target.value })
               }
+              required
             />
           </div>
           <div className="mb-2 flex flex-col">
@@ -148,6 +164,7 @@ export default function CreateRecipe() {
               onChange={(e) =>
                 setRecipe({ ...recipe, cookTime: e.target.value })
               }
+              required
             />
           </div>
           <div className="mb-2 flex flex-col">
@@ -159,6 +176,7 @@ export default function CreateRecipe() {
               onChange={(e) =>
                 setRecipe({ ...recipe, servings: e.target.value })
               }
+              required
             />
           </div>
           <div className="mb-2 flex flex-col">
@@ -252,6 +270,9 @@ export default function CreateRecipe() {
             >
               Add Instruction
             </button>
+            {submitError &&
+            <p className="text-red-700 text-center my-5 font-bold">{submitError}</p>
+            }
           </div>
           <div>
             <button className="bg-black text-white p-3 hover:bg-gray-700">
