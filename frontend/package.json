@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:45833",
   "dependencies": {
     "@craco/craco": "^6.4.0",
     "@testing-library/jest-dom": "^5.14.1",
