@@ -59,7 +59,7 @@ export default function CreateRecipe() {
 
     useEffect(()=>{
         setNewInstruction('')
-        setOptional('false')
+        setOptional(false)
     },[recipe.directions])
 
     const removeIngredient = (e,indx) => {
@@ -149,6 +149,7 @@ export default function CreateRecipe() {
                 <label>Instruction</label>
                 <textarea className="outline border-solid p-2" type="text" value={newDirectionInstruction} onChange={(e) => setNewInstruction(e.target.value)}/>
                 <label>Optional?</label>
+                
                 <input className="ml-5" type="checkbox" checked={newDirectionOptional} onChange={(e) => setOptional(e.target.checked)}/>
                 {/* </div> */}
                 <button className="bg-blue-500 hover:bg-blue-700 text-white text-lg mt-5 w-40 p-3" onClick={e=>addInstruction(e)}>Add Instruction</button>
