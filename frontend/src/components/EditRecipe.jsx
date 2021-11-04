@@ -6,13 +6,6 @@ import { useHistory } from 'react-router'
 
 export default function EditRecipe( {  ...props }) {
     const [recipe,setRecipe] = useState('')
-    const [cookTime,setCookTime] = useState('')
-    const [prepTime,setPrepTime] = useState('')
-    const [servings,setServings] = useState('')
-    const [title,setTitle] = useState('')
-    const [ingredients,setIngredients] = useState('')
-    const [directions,setDirections] = useState('')
-    const [description,setDescription] = useState('')
     const [newIngredientName, setNewIngredientName] = useState('')
     const [newIngredientAmount, setNewIngredientAmount] = useState('')
     const [newIngredientMeasurement, setNewIngredientMeasurement] = useState('')
@@ -26,10 +19,8 @@ export default function EditRecipe( {  ...props }) {
         return data;
     }
 
-    const { data, status } = useQuery('recipe', getRecipe, {onSuccess:data=>setRecipe(data)}) 
-     
-    console.log(status)
-    // console.log(data)
+    const { status } = useQuery('recipe', getRecipe, {onSuccess:data=>setRecipe(data)}) 
+
     const handleSubmit  = async (e) => {
         e.preventDefault()
         const editDate = moment().format('M/d/yyyy, h:mm a')
@@ -53,14 +44,10 @@ export default function EditRecipe( {  ...props }) {
             }
         })
         const data = await response.json()
-        history.push('/')
+        history.push(`/recipe/${recipe.uuid}`)
         return data
 
     }
-
-    useEffect(()=> {
-        setCookTime(recipe.cookTime)
-    },[recipe])
 
     useEffect(()=>{
         setNewIngredientAmount('')
@@ -71,7 +58,6 @@ export default function EditRecipe( {  ...props }) {
     useEffect(()=>{
         setNewInstruction('')
         setOptional(false)
-        console.log(directions)
     },[recipe.directions])
 
 
@@ -84,7 +70,7 @@ export default function EditRecipe( {  ...props }) {
             amount: newIngredientAmount,
             measurement: newIngredientMeasurement
         }
-        let newState = new Object(recipe)
+        let newState = {}
         newState.ingredients.push(newIngredientObj)
         setRecipe({...recipe,ingredients:[...newState.ingredients]})
     }
@@ -96,16 +82,12 @@ export default function EditRecipe( {  ...props }) {
             instructions: newDirectionInstruction,
             optional: newDirectionOptional,
         }
-        let newInstruction = new Object(recipe)
+        let newInstruction = {}
         newInstruction.directions.push(newInstructionObj)
         setRecipe({...recipe,directions:[...newInstruction.directions]})
     }
 
-    const changeIngredient = (indx,name) => {
-        const newIngredients = [...ingredients]
-        newIngredients[indx].name = name
-        setIngredients(newIngredients)
-    }
+
 
     const removeIngredient = (indx) => {
         const newIngredients = [...recipe.ingredients]
@@ -121,7 +103,7 @@ export default function EditRecipe( {  ...props }) {
 
     const handleBack = e => {
         e.preventDefault()
-        history.push('/')
+        history.push(`/recipe/${recipe.uuid}`)
     }
 
     return (
@@ -156,7 +138,7 @@ export default function EditRecipe( {  ...props }) {
                     </div>
                     <div className="mb-2 flex flex-col">
                     <label className="bold">Ingredients (add 1 at a time and press add ingredient)</label>
-                    { recipe.ingredients.map( (ingredient,index) => <div className="bg-gray-200 mb-3 flex items-center justify-between w-full pl-2"><span key={index}>{ingredient.name}</span> <button className="p-2 bg-red-500 text-white hover:bg-red-700" onClick={()=>removeIngredient(index)}>Remove</button> </div>)}
+                    { recipe.ingredients.map( (ingredient,index) => <div key={index} className="bg-gray-200 mb-3 flex items-center justify-between w-full pl-2"><span>{ingredient.name}</span> <button className="p-2 bg-red-500 text-white hover:bg-red-700" onClick={()=>removeIngredient(index)}>Remove</button> </div>)}
                     <div className="flex flex-col">
                     
                     <label>Name</label>
@@ -171,7 +153,7 @@ export default function EditRecipe( {  ...props }) {
                     <div className="mb-2 flex flex-col">
                     <label className="font-bold">Directions</label>
                    
-                    { recipe.directions.map( (direction,index) => <div className="bg-gray-200 mb-3 flex items-center justify-between w-full pl-2"><span key={index}>{direction.instructions}</span> <button className="p-2 bg-red-500 text-white hover:bg-red-700" onClick={()=>removeStep(index)}>Remove</button> </div>)}
+                    { recipe.directions.map( (direction,index) => <div key={index} className="bg-gray-200 mb-3 flex items-center justify-between w-full pl-2"><span>{direction.instructions}</span> <button className="p-2 bg-red-500 text-white hover:bg-red-700" onClick={()=>removeStep(index)}>Remove</button> </div>)}
                     {/* <div> */}
                     <label>Instruction</label>
                     <textarea className="outline border-solid p-2" type="text" value={newDirectionInstruction} onChange={(e) => setNewInstruction(e.target.value)}/>

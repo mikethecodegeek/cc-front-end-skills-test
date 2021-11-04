@@ -27,7 +27,7 @@ export default function Recipes() {
         setCurrentRecipe(recipe)
         setShowRecipe(true)
     }
-    const { data,status } = useQuery('recipes', getRecipes)
+    const { status } = useQuery('recipes', getRecipes)
     
     return (
         <>
@@ -56,9 +56,11 @@ export default function Recipes() {
               {recipes.length > 0 &&
             <div className="md:grid lg:grid-cols-3 md:grid-cols-2">
               {recipes.map(recipe => (
-                <RecipeListCard key={recipe.uuid}
-                recipe = {recipe} showSelectedRecipe={showSelectedRecipe} recipeName={recipe.title} listImage={recipe.images.full || ''} />
+                <Link to={`/recipe/${recipe.uuid}`} key={recipe.uuid}>
+                <RecipeListCard
+                recipe = {recipe} recipeName={recipe.title} listImage={recipe.images.full || ''} />
                
+              </Link>
               ))}
             </div>
           }
