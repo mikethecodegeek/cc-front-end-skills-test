@@ -51,7 +51,7 @@ export default function CreateRecipe() {
   return (
     <>
       <h2 className="text-center text-2xl">Add a New Recipe</h2>
-        <RecipeForm recipe={{ingredients:[],directions:[]}} setRecipe={setRecipe} handleSubmit={handleSubmit} />
+        <RecipeForm recipe={{ingredients:[],directions:[]}} link='/' handleSubmit={handleSubmit} />
     </>
   );
 }

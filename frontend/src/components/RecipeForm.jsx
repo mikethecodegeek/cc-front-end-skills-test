@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import moment from "moment";
 import uuid from "react-uuid";
-import { useQuery } from "react-query";
-import { useHistory } from "react-router";
 import {Link} from "react-router-dom";
 
 export default function RecipeForm({ handleSubmit, ...props }) {
   const [recipe, setRecipe] = useState(props.recipe)
   const [newIngredient,setNewIngredient] = useState({name:'',amount:'',measurement:''})
   const [newDirection,setNewDirection] = useState({instructions:'',optional:false})
+  const [ingredientError, setIngredientError] = useState(false)
   const [submitError, setSubmitError] = useState(false);
-  const history = useHistory();
+
 
   useEffect(() => {
     setNewIngredient({name:'',amount:'',measurement:''});
@@ -22,7 +20,18 @@ export default function RecipeForm({ handleSubmit, ...props }) {
 
   const addIngredient = (e) => {
     e.preventDefault();
-
+    if (newIngredient.name == '') {
+        setIngredientError('Please add a valid ingredient name')
+        return
+    }
+    if (newIngredient.amount == '') {
+        setIngredientError('Please add a valid ingredient amount')
+        return
+    }
+    if (newIngredient.measurement == '') {
+        setIngredientError('Please add a valid ingredient measurement')
+        return
+    }
     const newIngredientObj = {
       id: uuid(),
       name: newIngredient.name,
@@ -37,6 +46,10 @@ export default function RecipeForm({ handleSubmit, ...props }) {
 
   const addInstruction = (e) => {
     e.preventDefault();
+    if (newDirection.instructions == '') {
+        setSubmitError('Please add a valid instruction')
+        return
+    }
     const newInstructionObj = {
       instructions: newDirection.instructions,
       optional: newDirection.optional,
@@ -77,11 +90,6 @@ export default function RecipeForm({ handleSubmit, ...props }) {
 
 
   return (
-    
-     
-    
-        <>
-          <h2 className="text-center text-2xl">Edit Recipe</h2>
           <div className="flex justify-center">
             <form
               className="flex flex-col mb-20 ml-20 mt-5 w-2/3 shadow-xl p-10"
@@ -190,6 +198,9 @@ export default function RecipeForm({ handleSubmit, ...props }) {
                     }
                   />
                 </div>
+                {ingredientError &&
+            <p className="text-red-700 text-center my-5 font-bold">{ingredientError}</p>
+            }
                 <button
                   className="bg-green-500 hover:bg-green-700 text-white text-lg mt-5 w-40 p-3"
                   onClick={(e) => addIngredient(e)}
@@ -248,7 +259,7 @@ export default function RecipeForm({ handleSubmit, ...props }) {
                 <button className="bg-black text-white p-3 hover:bg-gray-700">
                   Submit
                 </button>
-                <Link to={`/recipe/${recipe.uuid}`}
+                <Link to={`${props.link}${recipe.uuid}`}
                   className="ml-5 bg-yellow-300 text-yellow-700 p-3 hover:bg-gray-700"
                 >
                   Back
@@ -256,6 +267,6 @@ export default function RecipeForm({ handleSubmit, ...props }) {
               </div>
             </form>
           </div>
-        </>
+        
   );
 }
