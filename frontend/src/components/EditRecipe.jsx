@@ -5,7 +5,7 @@ import {useQuery} from 'react-query'
 import { useHistory } from 'react-router'
 
 export default function EditRecipe( {  ...props }) {
-    const [recipe,setRecipe] = useState('')
+    const [recipe,setRecipe] = useState({})
     const [newIngredientName, setNewIngredientName] = useState('')
     const [newIngredientAmount, setNewIngredientAmount] = useState('')
     const [newIngredientMeasurement, setNewIngredientMeasurement] = useState('')
@@ -70,14 +70,13 @@ export default function EditRecipe( {  ...props }) {
             amount: newIngredientAmount,
             measurement: newIngredientMeasurement
         }
-        let newState = {}
-        newState.ingredients.push(newIngredientObj)
-        setRecipe({...recipe,ingredients:[...newState.ingredients]})
+        let newState = [...recipe.ingredients]
+        newState.push(newIngredientObj)
+        setRecipe({...recipe,ingredients:[...newState]})
     }
 
     const addInstruction = e => {
         e.preventDefault()
-        console.log(newDirectionInstruction,newDirectionOptional)
         const newInstructionObj = {
             instructions: newDirectionInstruction,
             optional: newDirectionOptional,

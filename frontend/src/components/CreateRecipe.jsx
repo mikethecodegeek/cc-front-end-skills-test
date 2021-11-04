@@ -2,15 +2,10 @@ import React,{ useState, useEffect } from 'react'
 import uuid from 'react-uuid'
 import moment from 'moment'
 import { useHistory } from 'react-router'
+import {Link} from 'react-router-dom'
 
 export default function CreateRecipe() {
-    const [cookTime,setCookTime] = useState('')
-    const [prepTime,setPrepTime] = useState('')
-    const [servings,setServings] = useState('')
-    const [title,setTitle] = useState('')
-    const [ingredients,setIngredients] = useState([])
-    const [directions,setDirections] = useState([])
-    const [description,setDescription] = useState('')
+    const [recipe, setRecipe] = useState({ingredients:[],directions:[]})
     const [newIngredientName, setNewIngredientName] = useState('')
     const [newIngredientAmount, setNewIngredientAmount] = useState('')
     const [newIngredientMeasurement, setNewIngredientMeasurement] = useState('')
@@ -30,13 +25,13 @@ export default function CreateRecipe() {
         const postDate = moment().format('M/d/yyyy, h:mm a')
         const editDate = moment().format('M/d/yyyy, h:mm a')
         const newRecipe = {
-            cookTime,
-            prepTime,
-            servings,
-            title,
-            ingredients,
-            directions,
-            description,
+            cookTime:recipe.cookTime,
+            prepTime:recipe.prepTime,
+            servings:recipe.servings,
+            title:recipe.title,
+            ingredients:recipe.ingredients,
+            directions:recipe.directions,
+            description:recipe.description,
             images,
             postDate,
             editDate,
@@ -60,13 +55,26 @@ export default function CreateRecipe() {
         setNewIngredientAmount('')
         setNewIngredientName('')
         setNewIngredientMeasurement('')
-    },[ingredients])
+    },[recipe.ingredients])
 
     useEffect(()=>{
         setNewInstruction('')
-        setOptional(false)
-        console.log(directions)
-    },[directions])
+        setOptional('false')
+    },[recipe.directions])
+
+    const removeIngredient = (e,indx) => {
+        e.preventDefault()
+        const newIngredients = [...recipe.ingredients]
+        newIngredients.splice(indx,1)
+        setRecipe({...recipe,ingredients:newIngredients})
+    }
+
+    const removeStep = (e,indx) => {
+        e.preventDefault()
+        const newDirections = [...recipe.directions]
+        newDirections.splice(indx,1)
+        setRecipe({...recipe,directions:newDirections})
+    }
 
 
     const addIngredient = e => {
@@ -78,18 +86,21 @@ export default function CreateRecipe() {
             amount: newIngredientAmount,
             measurement: newIngredientMeasurement
         }
-        setIngredients([...ingredients, newIngredientObj])
+        let newState = [...recipe.ingredients]
+        newState.push(newIngredientObj)
+        setRecipe({...recipe,ingredients:[...newState]})
        
     }
 
     const addInstruction = e => {
         e.preventDefault()
-        console.log(newDirectionInstruction,newDirectionOptional)
         const newInstructionObj = {
             instructions: newDirectionInstruction,
             optional: newDirectionOptional,
         }
-        setDirections([...directions, newInstructionObj])
+        let newInstruction = [...recipe.directions]
+        newInstruction.push(newInstructionObj)
+        setRecipe({...recipe,directions:[...newInstruction]})
     }
 
     return (
@@ -99,27 +110,27 @@ export default function CreateRecipe() {
             <form className="flex flex-col mb-20 ml-20 mt-5 w-2/3 shadow-xl p-10" onSubmit={(e)=>handleSubmit(e)}>
                 <div className="mb-2 flex flex-col">
                 <label>Title</label>
-                <input className="mt-2 outline border-solid p-2" type="text" value={title} onChange={(e) => setTitle(e.target.value)}/>
+                <input className="mt-2 outline border-solid p-2" type="text" value={recipe.title} onChange={(e) => setRecipe({...recipe,title:e.target.value})}/>
                 </div>
                 <div className="mb-2 flex flex-col">
                 <label>Description</label>
-                <input className="mt-2 outline border-solid p-2" type="text" value={description} onChange={(e) => setDescription(e.target.value)}/>
+                <input className="mt-2 outline border-solid p-2" type="text" value={recipe.description} onChange={(e) => setRecipe({...recipe,description:e.target.value})}/>
                 </div>
                 <div className="mb-2 flex flex-col">
                 <label>Prep Time</label>
-                <input className="mt-2 outline border-solid p-2" type="text" value={prepTime} onChange={(e) => setPrepTime(e.target.value)}/>
+                <input className="mt-2 outline border-solid p-2" type="text" value={recipe.prepTime} onChange={(e) => setRecipe({...recipe,prepTime:e.target.value})}/>
                 </div>
                 <div className="mb-2 flex flex-col">
                 <label>Cook Time</label>
-                <input className="mt-2 outline border-solid p-2" type="text" value={cookTime} onChange={(e) => setCookTime(e.target.value)}/>
+                <input className="mt-2 outline border-solid p-2" type="text" value={recipe.cookTime} onChange={(e) => setRecipe({...recipe,cookTime:e.target.value})}/>
                 </div>
                 <div className="mb-2 flex flex-col">
                 <label>Servings</label>
-                <input className="mt-2 outline border-solid p-2" type="text" value={servings} onChange={(e) => setServings(e.target.value)}/>
+                <input className="mt-2 outline border-solid p-2" type="text" value={recipe.servings} onChange={(e) => setRecipe({...recipe,servings:e.target.value})}/>
                 </div>
                 <div className="mb-2 flex flex-col">
                 <label className="bold">Ingredients (add 1 at a time and press add ingredient)</label>
-                { ingredients.map(ingredient => <span>{ingredient.name}</span>)}
+                { recipe.ingredients.map((ingredient,index) => <div key={index} className="bg-gray-200 mb-3 flex items-center justify-between w-full pl-2"><span>{ingredient.name}</span> <button className="p-2 bg-red-500 text-white hover:bg-red-700" onClick={(e)=>removeIngredient(e,index)}>Remove</button> </div>)}
                 <div className="flex flex-col">
                 
                 <label>Name</label>
@@ -133,7 +144,7 @@ export default function CreateRecipe() {
                 </div>
                 <div className="mb-2 flex flex-col">
                 <label className="font-bold">Directions</label>
-                { directions.map(direction => <span>{direction.instructions}</span>)}
+                { recipe.directions.map((direction,index) => <div key={index} className="bg-gray-200 mb-3 flex items-center justify-between w-full pl-2"><span>{direction.instructions}</span> <button className="p-2 bg-red-500 text-white hover:bg-red-700" onClick={(e)=>removeStep(e,index)}>Remove</button> </div>)}
                 {/* <div> */}
                 <label>Instruction</label>
                 <textarea className="outline border-solid p-2" type="text" value={newDirectionInstruction} onChange={(e) => setNewInstruction(e.target.value)}/>
@@ -144,6 +155,7 @@ export default function CreateRecipe() {
                 </div>
                 <div>
                 <button className="bg-black text-white p-3 hover:bg-gray-700">Submit</button>
+                <Link to='/' className="ml-5 bg-yellow-300 text-yellow-700 p-3 hover:bg-gray-700">Back</Link>
                 </div>
             </form>
             </div>
