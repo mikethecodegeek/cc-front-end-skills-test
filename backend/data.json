@@ -162,7 +162,7 @@
       "prepTime": 25,
       "cookTime": 20,
       "postDate": "02/19/2018 12:47:42 AM",
-      "editDate": "11/4/2021, 2:22 pm",
+      "editDate": "11/4/2021, 3:03 pm",
       "ingredients": [
         {
           "uuid": "3d810ba9-7e4e-48aa-b2e9-7918e38b358d",
@@ -183,12 +183,6 @@
           "name": "parmesan cheese, grated"
         },
         {
-          "uuid": "aa1ff525-4190-4a66-8d12-3f383a752b55",
-          "amount": 0.25,
-          "measurement": "cup",
-          "name": "milk"
-        },
-        {
           "uuid": "6278b9e5-3862-44f8-97b0-5bd37bb70141",
           "amount": 0.25,
           "measurement": "cup",
@@ -199,6 +193,12 @@
           "amount": 1.25,
           "measurement": "lbs",
           "name": "ground italian sausage"
+        },
+        {
+          "id": "57fb53-6ebf-c70a-a8f-c1f57bcd3b3f",
+          "name": "ground beef",
+          "amount": "1",
+          "measurement": "pound"
         }
       ],
       "directions": [
@@ -223,8 +223,8 @@
           "optional": false
         },
         {
-          "instructions": "Serve with your favorite sauce and spaghetti.",
-          "optional": true
+          "instructions": "serve and eat",
+          "optional": false
         }
       ]
     },
