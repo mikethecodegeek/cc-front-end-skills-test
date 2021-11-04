@@ -3,14 +3,12 @@ import moment from "moment";
 import uuid from "react-uuid";
 import { useQuery } from "react-query";
 import { useHistory } from "react-router";
+import {Link} from "react-router-dom";
 
 export default function EditRecipe({ ...props }) {
   const [recipe, setRecipe] = useState({});
-  const [newIngredientName, setNewIngredientName] = useState("");
-  const [newIngredientAmount, setNewIngredientAmount] = useState("");
-  const [newIngredientMeasurement, setNewIngredientMeasurement] = useState("");
-  const [newDirectionInstruction, setNewInstruction] = useState("");
-  const [newDirectionOptional, setOptional] = useState(false);
+  const [newIngredient,setNewIngredient] = useState({name:'',amount:'',measurement:''})
+  const [newDirection,setNewDirection] = useState({instructions:'',optional:false})
   const [submitError, setSubmitError] = useState(false);
   const history = useHistory();
 
@@ -61,14 +59,11 @@ export default function EditRecipe({ ...props }) {
   };
 
   useEffect(() => {
-    setNewIngredientAmount("");
-    setNewIngredientName("");
-    setNewIngredientMeasurement("");
+    setNewIngredient({name:'',amount:'',measurement:''});
   }, [recipe.ingredients]);
 
   useEffect(() => {
-    setNewInstruction("");
-    setOptional(false);
+    setNewDirection({instructions:'',optional:false})
   }, [recipe.directions]);
 
   const addIngredient = (e) => {
@@ -76,10 +71,11 @@ export default function EditRecipe({ ...props }) {
 
     const newIngredientObj = {
       id: uuid(),
-      name: newIngredientName,
-      amount: newIngredientAmount,
-      measurement: newIngredientMeasurement,
+      name: newIngredient.name,
+      amount: newIngredient.amount,
+      measurement: newIngredient.measurement
     };
+
     let newState = [...recipe.ingredients];
     newState.push(newIngredientObj);
     setRecipe({ ...recipe, ingredients: [...newState] });
@@ -88,8 +84,8 @@ export default function EditRecipe({ ...props }) {
   const addInstruction = (e) => {
     e.preventDefault();
     const newInstructionObj = {
-      instructions: newDirectionInstruction,
-      optional: newDirectionOptional,
+      instructions: newDirection.instructions,
+      optional: newDirection.optional,
     };
     let newInstruction = [...recipe.directions];
     newInstruction.push(newInstructionObj);
@@ -98,9 +94,9 @@ export default function EditRecipe({ ...props }) {
 
   const removeIngredient = (e, indx) => {
     e.preventDefault();
-    const newIngredients = [...recipe.ingredients];
-    newIngredients.splice(indx, 1);
-    setRecipe({ ...recipe, ingredients: newIngredients });
+    const allIngredients = [...recipe.ingredients];
+    allIngredients.splice(indx, 1);
+    setRecipe({ ...recipe, ingredients: allIngredients });
   };
 
   const removeStep = (e, indx) => {
@@ -110,10 +106,6 @@ export default function EditRecipe({ ...props }) {
     setRecipe({ ...recipe, directions: newDirections });
   };
 
-  const handleBack = (e) => {
-    e.preventDefault();
-    history.push(`/recipe/${recipe.uuid}`);
-  };
 
   return (
     <>
@@ -209,23 +201,23 @@ export default function EditRecipe({ ...props }) {
                   <input
                     className="outline border-solid p-2"
                     type="text"
-                    value={newIngredientName}
-                    onChange={(e) => setNewIngredientName(e.target.value)}
+                    value={newIngredient.name}
+                    onChange={(e) => setNewIngredient({...newIngredient,name:e.target.value})}
                   />
                   <label>Amount</label>
                   <input
                     className="outline border-solid p-2"
                     type="text"
-                    value={newIngredientAmount}
-                    onChange={(e) => setNewIngredientAmount(e.target.value)}
+                    value={newIngredient.amount}
+                    onChange={(e) => setNewIngredient({...newIngredient,amount:e.target.value})}
                   />
                   <label>Measurement</label>
                   <input
                     className="outline border-solid p-2"
                     type="text"
-                    value={newIngredientMeasurement}
+                    value={newIngredient.measurement}
                     onChange={(e) =>
-                      setNewIngredientMeasurement(e.target.value)
+                      setNewIngredient({...newIngredient,measurement:e.target.value})
                     }
                   />
                 </div>
@@ -261,16 +253,16 @@ export default function EditRecipe({ ...props }) {
                     <input
                       className="ml-5"
                       type="checkbox"
-                      checked={newDirectionOptional}
-                      onChange={(e) => setOptional(e.target.checked)}
+                      checked={newDirection.optional}
+                      onChange={(e) => setNewDirection({...newDirection,optional:e.target.checked})}
                     />
                   </div>
                 </div>
                 <textarea
                   className="outline border-solid p-2"
                   type="text"
-                  value={newDirectionInstruction}
-                  onChange={(e) => setNewInstruction(e.target.value)}
+                  value={newDirection.instructions}
+                  onChange={(e) => setNewDirection({...newDirection,instructions:e.target.value})}
                 />
 
                 <button
@@ -287,12 +279,11 @@ export default function EditRecipe({ ...props }) {
                 <button className="bg-black text-white p-3 hover:bg-gray-700">
                   Submit
                 </button>
-                <button
-                  onClick={(e) => handleBack(e)}
+                <Link to={`/recipe/${recipe.uuid}`}
                   className="ml-5 bg-yellow-300 text-yellow-700 p-3 hover:bg-gray-700"
                 >
                   Back
-                </button>
+                </Link>
               </div>
             </form>
           </div>
