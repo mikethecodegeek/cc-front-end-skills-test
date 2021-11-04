@@ -89,13 +89,15 @@ export default function EditRecipe( {  ...props }) {
 
 
 
-    const removeIngredient = (indx) => {
+    const removeIngredient = (e,indx) => {
+        e.preventDefault()
         const newIngredients = [...recipe.ingredients]
         newIngredients.splice(indx,1)
         setRecipe({...recipe,ingredients:newIngredients})
     }
 
-    const removeStep = (indx) => {
+    const removeStep = (e,indx) => {
+        e.preventDefault()
         const newDirections = [...recipe.directions]
         newDirections.splice(indx,1)
         setRecipe({...recipe,directions:newDirections})
@@ -138,7 +140,7 @@ export default function EditRecipe( {  ...props }) {
                     </div>
                     <div className="mb-2 flex flex-col">
                     <label className="bold">Ingredients (add 1 at a time and press add ingredient)</label>
-                    { recipe.ingredients.map( (ingredient,index) => <div key={index} className="bg-gray-200 mb-3 flex items-center justify-between w-full pl-2"><span>{ingredient.name}</span> <button className="p-2 bg-red-500 text-white hover:bg-red-700" onClick={()=>removeIngredient(index)}>Remove</button> </div>)}
+                    { recipe.ingredients.map( (ingredient,index) => <div key={index} className="bg-gray-200 mb-3 flex items-center justify-between w-full pl-2"><span>{ingredient.name}</span> <button className="p-2 bg-red-500 text-white hover:bg-red-700" onClick={(e)=>removeIngredient(e,index)}>Remove</button> </div>)}
                     <div className="flex flex-col">
                     
                     <label>Name</label>
@@ -153,7 +155,7 @@ export default function EditRecipe( {  ...props }) {
                     <div className="mb-2 flex flex-col">
                     <label className="font-bold">Directions</label>
                    
-                    { recipe.directions.map( (direction,index) => <div key={index} className="bg-gray-200 mb-3 flex items-center justify-between w-full pl-2"><span>{direction.instructions}</span> <button className="p-2 bg-red-500 text-white hover:bg-red-700" onClick={()=>removeStep(index)}>Remove</button> </div>)}
+                    { recipe.directions.map( (direction,index) => <div key={index} className="bg-gray-200 mb-3 flex items-center justify-between w-full pl-2"><span>{direction.instructions}</span> <button className="p-2 bg-red-500 text-white hover:bg-red-700" onClick={(e)=>removeStep(e,index)}>Remove</button> </div>)}
                     {/* <div> */}
                     <label>Instruction</label>
                     <textarea className="outline border-solid p-2" type="text" value={newDirectionInstruction} onChange={(e) => setNewInstruction(e.target.value)}/>

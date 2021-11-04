@@ -162,7 +162,7 @@
       "prepTime": 25,
       "cookTime": 20,
       "postDate": "02/19/2018 12:47:42 AM",
-      "editDate": "11/3/2021, 4:57 pm",
+      "editDate": "02/19/2018 01:12:05 AM",
       "ingredients": [
         {
           "uuid": "3d810ba9-7e4e-48aa-b2e9-7918e38b358d",
@@ -238,10 +238,10 @@
         "small": "/img/kielbasa_skillet--s.jpg"
       },
       "servings": 8,
-      "prepTime": "10",
+      "prepTime": 20,
       "cookTime": 20,
       "postDate": "03/12/2018 01:51:12 PM",
-      "editDate": "11/3/2021, 4:19 pm",
+      "editDate": "03/15/2018 04:14:03 PM",
       "ingredients": [
         {
           "uuid": "3d810ba9-7e4e-48aa-b2e9-7918e38b358d",
@@ -290,6 +290,12 @@
           "amount": 0.25,
           "measurement": "teaspoon",
           "name": "black pepper"
+        },
+        {
+          "uuid": "da4df371-eb5d-44f6-905c-6c10255b24b4",
+          "amount": 2,
+          "measurement": "packages (24 oz each)",
+          "name": "refrigerated prepared mashed potatoes"
         }
       ],
       "directions": [
@@ -321,10 +327,10 @@
         "small": "/img/brussel_chips--s.jpg"
       },
       "servings": 4,
-      "prepTime": "10",
+      "prepTime": 15,
       "cookTime": 25,
       "postDate": "03/28/2018 01:27:51 AM",
-      "editDate": "11/3/2021, 4:19 pm",
+      "editDate": "03/30/2018 05:51:52 PM",
       "ingredients": [
         {
           "uuid": "77ae45d7-659b-4cb5-a4ea-07f00e442974",
