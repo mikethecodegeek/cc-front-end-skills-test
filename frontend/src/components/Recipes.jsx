@@ -1,19 +1,15 @@
 import React,{useState} from 'react'
 import {useQuery} from 'react-query'
 import RecipeListCard from './RecipeListCard'
-import RecipeCard from './RecipeCard'
 import Searchbar from './Searchbar'
 import {
-  BrowserRouter as Router,
+ 
   Link
 } from "react-router-dom";
 
 export default function Recipes() {
     const [recipes,setRecipes] = useState([])
     const [allRecipes,setAllRecipes] = useState([])
-    const [currentRecipe, setCurrentRecipe]=useState({})
-    const [showRecipe, setShowRecipe] = useState(false)
- 
     
     const getRecipes = async () => {
         const response = await fetch('/recipes')
@@ -23,16 +19,10 @@ export default function Recipes() {
         return data
     }
 
-    const showSelectedRecipe = (recipe) => {
-        setCurrentRecipe(recipe)
-        setShowRecipe(true)
-    }
     const { status } = useQuery('recipes', getRecipes)
     
     return (
-        <>
-      
-        {!showRecipe &&
+       
         <div className="mb-20">
           { status === 'error' &&
             <div>
@@ -72,11 +62,9 @@ export default function Recipes() {
             </>
           }
         </div>
-        }
-        {showRecipe && 
-            <RecipeCard recipe={currentRecipe} closeRecipe={setShowRecipe} />
-        }
         
-        </>
+       
+        
+       
     )
 }

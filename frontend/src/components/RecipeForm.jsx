@@ -20,21 +20,21 @@ export default function RecipeForm({ handleSubmit, ...props }) {
 
   const addIngredient = (e) => {
     e.preventDefault();
-    if (newIngredient.name == '') {
+    if (newIngredient.name === '') {
         setIngredientError('Please add a valid ingredient name')
         return
     }
-    if (newIngredient.amount == '') {
+    if (newIngredient.amount === '') {
         setIngredientError('Please add a valid ingredient amount')
         return
     }
-    if (newIngredient.measurement == '') {
+    if (newIngredient.measurement === '') {
         setIngredientError('Please add a valid ingredient measurement')
         return
     }
     setIngredientError(false)
     const newIngredientObj = {
-      id: uuid(),
+      uuid: uuid(),
       name: newIngredient.name,
       amount: newIngredient.amount,
       measurement: newIngredient.measurement
@@ -47,7 +47,7 @@ export default function RecipeForm({ handleSubmit, ...props }) {
 
   const addInstruction = (e) => {
     e.preventDefault();
-    if (newDirection.instructions == '') {
+    if (newDirection.instructions === '') {
         setSubmitError('Please add a valid instruction')
         return
     }

@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import uuid from "react-uuid";
 import moment from "moment";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
 import RecipeForm from "./RecipeForm";
 
 export default function CreateRecipe() {
-    const [recipe, setRecipe] = useState();
-    const history = useHistory();
+ 
+  const history = useHistory();
 
 
   const handleSubmit = async (e,recipe) => {

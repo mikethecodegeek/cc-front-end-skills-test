@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 
-export default function RecipeCard({ closeRecipe, ...props }) {
+export default function RecipeCard({  ...props }) {
   const [specials, setSpecials] = useState([]);
   const [recipe,setRecipe] = useState({});
 
@@ -69,10 +69,10 @@ export default function RecipeCard({ closeRecipe, ...props }) {
         </div>
         <p className="text-center mt-10 mb-10 text-xl">{recipe.description}</p>
         <div className="lg:flex">
-          <div className="bg-gray-200 p-10 mr-10 shadow-md">
+          <div className="xs:w-full bg-gray-200 p-10 mr-10 shadow-md">
             <h3 className="text-lg mb-5 uppercase font-bold">Ingredients</h3>
             <ul>
-              {recipe.ingredients.map((ingredient, index) => {
+              {recipe.ingredients.map((ingredient) => {
                 return (
                   <div key={ingredient.uuid}>
                     <li className="my-2">
@@ -94,7 +94,7 @@ export default function RecipeCard({ closeRecipe, ...props }) {
                               specialColors[specials[ingredient.uuid].type]
                             }
                           >
-                            {specials[ingredient.uuid].type}!{" "}
+                            {specials[ingredient.uuid].type}
                           </p>
                         </div>
                       </div>
@@ -110,18 +110,16 @@ export default function RecipeCard({ closeRecipe, ...props }) {
             </h3>
             <ul>
               {recipe.directions.map((instruction, index) => {
-                return instruction.optional ? (
-                  <li key={index} className="my-2">
-                    <span className="mr-2">{index + 1}.</span>{" "}
-                    {instruction.instructions}{" "}
-                    <span className="italic">(optional)</span>
-                  </li>
-                ) : (
+                return (
                   <li key={index} className="my-2">
                     <span className="mr-2">{index + 1}.</span>{" "}
                     {instruction.instructions}
+                    {instruction.optional &&
+                    
+                    <span className="italic"> (optional)</span>
+                    }
                   </li>
-                );
+                ) 
               })}
             </ul>
           </div>

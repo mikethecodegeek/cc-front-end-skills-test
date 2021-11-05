@@ -151,7 +151,7 @@
     },
     {
       "uuid": "7f8e872d-47a5-44e6-b1ad-7b7cb94f1d30",
-      "title": "Italian Meatballs",
+      "title": "Italian Meatballs 2",
       "description": "Quick, easy and authentic.",
       "images": {
         "full": "/img/italian_meatballs.jpg",
@@ -162,7 +162,7 @@
       "prepTime": 25,
       "cookTime": 20,
       "postDate": "02/19/2018 12:47:42 AM",
-      "editDate": "11/4/2021, 4:12 pm",
+      "editDate": "11/5/2021, 9:22 am",
       "ingredients": [
         {
           "uuid": "3d810ba9-7e4e-48aa-b2e9-7918e38b358d",
@@ -177,28 +177,22 @@
           "name": "dry bread crumbs"
         },
         {
-          "uuid": "0c62dd1d-7b0f-4471-ba06-df220177ae39",
-          "amount": 0.25,
-          "measurement": "cup",
-          "name": "parmesan cheese, grated"
-        },
-        {
           "uuid": "6278b9e5-3862-44f8-97b0-5bd37bb70141",
           "amount": 0.25,
           "measurement": "cup",
           "name": "onion, finely chopped"
         },
         {
-          "uuid": "62798278-2fbc-4c31-98de-b7959c191688",
-          "amount": 1.25,
-          "measurement": "lbs",
-          "name": "ground italian sausage"
-        },
-        {
           "id": "57fb53-6ebf-c70a-a8f-c1f57bcd3b3f",
           "name": "ground beef",
           "amount": "1",
           "measurement": "pound"
+        },
+        {
+          "id": "32d1b02-5d3d-5b-da4-f72dd8a0b7",
+          "name": "new ing",
+          "amount": "1",
+          "measurement": "cup"
         }
       ],
       "directions": [
@@ -680,6 +674,35 @@
       "postDate": "11/4/2021, 4:28 pm",
       "editDate": "11/4/2021, 4:29 pm",
       "uuid": "83b50a3-f31d-1d81-1836-6387a308df1"
+    },
+    {
+      "cookTime": "20",
+      "prepTime": "20",
+      "servings": "4",
+      "title": "new recipe",
+      "ingredients": [
+        {
+          "id": "3ef8a62-306e-1dcc-156a-30d6238cf",
+          "name": "ing 1",
+          "amount": "1",
+          "measurement": "cup"
+        }
+      ],
+      "directions": [
+        {
+          "instructions": "step 1",
+          "optional": false
+        }
+      ],
+      "description": "descr",
+      "images": {
+        "full": "",
+        "medium": "",
+        "small": ""
+      },
+      "postDate": "11/5/2021, 9:24 am",
+      "editDate": "11/5/2021, 9:24 am",
+      "uuid": "7bc3f-a61-3a80-af45-a5503170dc3"
     }
   ],
   "specials": [
