@@ -22,7 +22,4 @@ Features:
 Features to add:
 - Editing of individual ingredients in recipes
 - Editing of individual instructions in recipes
-- Implement drag and drop to re-order ingredients
-- Implement drag and drop to re-order instructions
-- Form validation - there is currently no validation on form submits
 - Deployment
